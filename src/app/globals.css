@@ -1,27 +1,183 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: sans-serif;
+  background-color: rgb(40, 0, 0);
 }
+
+/* Book */
+.book {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  transition: transform 0.5s;
+}
+
+.paper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  perspective: 1500px;
+}
+
+.front,
+.back {
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+
+.front {
+  z-index: 1;
+  backface-visibility: hidden;
+  border-left: 3px solid rgb(40, 0, 0);
+}
+
+.back {
+  z-index: 0;
+}
+
+.front-content,
+.back-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-content {
+  transform: rotateY(180deg);
+}
+
+/* Paper flip effect */
+.flipped .front,
+.flipped .back {
+  transform: rotateY(-180deg);
+}
+
+/* Controller Buttons */
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 10px;
+  transition: transform 0.5s;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover i {
+  color: #ffffff;
+}
+
+i {
+  font-size: 50px;
+  color: gray;
+}
+
+/*images*/
+
+#f1 .presentation {
+  max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+  max-height: 100%; /* Ensure the image doesn't exceed the container's height */
+  display: block; /* Remove any potential whitespace or spacing issues */
+  margin: 0 auto; /* Center the image horizontally if needed */
+}
+
+#b1 .drawing1 {
+  max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+  max-height: 100%; /* Ensure the image doesn't exceed the container's height */
+  display: block; /* Remove any potential whitespace or spacing issues */
+  margin: 0 auto; /* Center the image horizontally if needed */
+}
+
+#b2 .drawing2 {
+  max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+  max-height: 100%; /* Ensure the image doesn't exceed the container's height */
+  display: block; /* Remove any potential whitespace or spacing issues */
+  margin: 0 auto; /* Center the image horizontally if needed */
+}
+
+#b3 .drawing3 {
+  max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+  max-height: 100%; /* Ensure the image doesn't exceed the container's height */
+  display: block; /* Remove any potential whitespace or spacing issues */
+  margin: 0 auto; /* Center the image horizontally if needed */
+}
+
+#b4 .drawing4 {
+  max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+  max-height: 100%; /* Ensure the image doesn't exceed the container's height */
+  display: block; /* Remove any potential whitespace or spacing issues */
+  margin: 0 auto; /* Center the image horizontally if needed */
+}
+
+#b5 .drawing5 {
+  max-width: 90%; /* Ensure the image doesn't exceed the container's width */
+  min-height: 90%; /* Ensure the image doesn't exceed the container's height */
+  display: block; /* Remove any potential whitespace or spacing issues */
+  margin: 0 auto; /* Center the image horizontally if needed */
+}
+
+#b6 .drawing6 {
+  max-width: 90%; /* Ensure the image doesn't exceed the container's width */
+  min-height: 80%; /* Ensure the image doesn't exceed the container's height */
+  display: block; /* Remove any potential whitespace or spacing issues */
+  margin: 0 auto; /* Center the image horizontally if needed */
+}
+
+/*text*/
+
+.text {
+  max-width: 90%; /* Set a maximum width for the text */
+  max-height: 90%;
+  font-size: 8.5px; /* Adjust the font size as needed */
+  margin: 0 auto; /* Center the text horizontally if needed */
+  text-align: justify;
+  font-family: "Morris Roman", sans-serif;
+  font-family: "Morris Roman Alternate", sans-serif;
+  
+}
+
+/* page stack order */
+
+#p1 {
+  z-index: 6;
+}
+
+#p2 {
+  z-index: 5;
+}
+#p3 {
+  z-index: 4;
+}
+#p4 {
+  z-index: 3;
+}
+#p5 {
+  z-index: 2;
+}
+#p6 {
+  z-index: 1;
+}
+
