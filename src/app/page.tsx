@@ -1,6 +1,6 @@
 import React from "react";
 import "./fontawesome"; // Importa el archivo fontawesome.ts
-import "./global.css";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 
