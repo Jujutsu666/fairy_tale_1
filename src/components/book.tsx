@@ -1,55 +1,62 @@
-'use client';
-import { useState } from 'react';
-import Image from 'next/image';
-import PresentationImage from '/public/assets/images/presentation.png';
-import ImageP1 from '/public/assets/images/p1.png';
-import ImageP2 from '/public/assets/images/p22.png';
-import ImageP3 from '/public/assets/images/p3.png';
-import ImageP4 from '/public/assets/images/p4.png';
-import ImageP7 from '/public/assets/images/p7.png';
-import ImageP6 from '/public/assets/images/p6.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
+"use client";
+import { useState } from "react";
+import Image from "next/image";
+import PresentationImage from "/public/assets/images/presentation.png";
+import ImageP1 from "/public/assets/images/p1.png";
+import ImageP2 from "/public/assets/images/p22.png";
+import ImageP3 from "/public/assets/images/p3.png";
+import ImageP4 from "/public/assets/images/p4.png";
+import ImageP7 from "/public/assets/images/p7.png";
+import ImageP6 from "/public/assets/images/p6.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowCircleLeft,
+  faArrowCircleRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Book() {
   const [page, setPage] = useState(0);
-  const [bookStyle, setBookStyle] = useState({ transform: 'translateX(0%)' });
-  const [prevBtnStyle, setPrevBtnStyle] = useState({ transform: 'translateX(0px)' });
-  const [nextBtnStyle, setNextBtnStyle] = useState({ transform: 'translateX(0px)' });
+  const [bookStyle, setBookStyle] = useState({ transform: "translateX(0%)" });
+  const [prevBtnStyle, setPrevBtnStyle] = useState({
+    transform: "translateX(0px)",
+  });
+  const [nextBtnStyle, setNextBtnStyle] = useState({
+    transform: "translateX(0px)",
+  });
 
   function openBook() {
-    setBookStyle({ transform: 'translateX(50%)' });
-    setPrevBtnStyle({ transform: 'translateX(-180px)' });
-    setNextBtnStyle({ transform: 'translateX(180px)' });
+    setBookStyle({ transform: "translateX(50%)" });
+    setPrevBtnStyle({ transform: "translateX(-180px)" });
+    setNextBtnStyle({ transform: "translateX(180px)" });
   }
 
   function closeBook(isAtBeginning: boolean) {
     if (isAtBeginning) {
-      setBookStyle({ transform: 'translateX(0%)' });
+      setBookStyle({ transform: "translateX(0%)" });
     } else {
-      setBookStyle({ transform: 'translateX(100%)' });
+      setBookStyle({ transform: "translateX(100%)" });
     }
-    setPrevBtnStyle({ transform: 'translateX(0px)' });
-    setNextBtnStyle({ transform: 'translateX(0px)' });
+    setPrevBtnStyle({ transform: "translateX(0px)" });
+    setNextBtnStyle({ transform: "translateX(0px)" });
   }
 
   function handlePrevClick() {
-    if (page === 4) openBook();
+    if (page === 6) openBook();
     if (page > 0) setPage((prevState) => prevState - 1);
     if (page === 1) closeBook(true);
   }
 
   function handleNextClick() {
     if (page === 0) openBook();
-    if (page < 4)
+    if (page < 6)
       setPage((prevState) => {
-        if (page === 3) closeBook(false);
+        if (page === 5) closeBook(false);
         return prevState + 1;
       });
   }
 
   function flip(_page: number) {
-    let className = 'paper';
+    let className = "paper";
     let style = {};
 
     if (_page < page) {
@@ -326,187 +333,180 @@ export default function Book() {
           <div className="back">
             <div id="b4" className="back-content">
               <Image
-                className="drawing4"
                 src={ImageP4}
-                alt="drawing"
+                alt="presentation"
                 width={350} // Ajusta el ancho según tus necesidades
                 height={500} // Ajusta la altura según tus necesidades
               />
             </div>
           </div>
-          {/* PAPER 5 */}
-          <div id="p5" {...flip(4)}>
-            <div className="front">
-              <div id="f5" className="front-content">
-                <p className="text">
-                  El bosque exhudaba un silencio espeso y ominoso cuando el
-                  lobo, envuelto en su piel de obrera, se acercó sigilosamente a
-                  la casa de la abuela. El rincón oscuro del mundo parecía
-                  retener el aliento, como si anticipara el horror que estaba
-                  por desencadenarse.
-                  <br />
-                  <br />
-                  El lobo, con su mirada perversa y hambrienta, llegó a la
-                  puerta de la casa. Allí, detuvo su avance y golpeó tres veces
-                  con sus garras, un golpeteo que sonó como el eco de un corazón
-                  palpitante en medio de la negrura. Un escalofrío recorrió el
-                  aire, como si el propio bosque supiera que la hora de la
-                  tragedia se acercaba.
-                  <br />
-                  <br />
-                  Tras el tercer golpe, el lobo esperó, y el tiempo pareció
-                  detenerse. Entonces, imitando la voz temblorosa de la niña,
-                  murmuró desde el otro lado de la puerta: Abuelita, soy yo,
-                  Rosalinda. He vuelto.
-                  <br />
-                  <br />
-                  Dentro de la casa, la abuela, ajena al peligro, se encontraba
-                  frente a un espejo, ajustando su vestido con manos ancianas y
-                  temblorosas. Escuchó la voz de la supuesta nieta y sonrió,
-                  pensando en el reencuentro con su amada Rosalinda.
-                  <br />
-                  <br />
-                  Pero mientras miraba su reflejo en el espejo, los ojos de la
-                  abuela se encontraron con los del lobo, reflejados en el
-                  cristal. No eran los ojos de su nieta, eran los ojos del
-                  depredador disfrazado, con el brillo voraz de la bestia que
-                  ansiaba su carne. El horror se apoderó de la abuela, pero fue
-                  demasiado tarde.
-                  <br />
-                  <br />
-                  El lobo, con una velocidad sobrenatural, atravesó la puerta
-                  con un aullido infernal y se abalanzó sobre la abuela antes de
-                  que ella pudiera gritar. Los colmillos del lobo se hundieron
-                  en la carne de la anciana con una ferocidad grotesca,
-                  desgarrando su piel y músculos en una danza macabra de sangre
-                  y sufrimiento.
-                  <br />
-                  <br />
-                  Los aullidos de agonía se mezclaron con los gruñidos del lobo,
-                  creando una sinfonía de pesadilla que resonó en el bosque
-                  oscuro. La sangre salpicó las paredes y el suelo de la casa,
-                  transformándola en un escenario de horror indescriptible. La
-                  abuela, en su último suspiro, miró a los ojos amarillos del
-                  lobo mientras la vida se apagaba de sus ojos, y el lobo
-                  continuó devorándola con una voracidad insaciable, como un
-                  demonio insensible a la humanidad.
-                  <br />
-                  <br />
-                  Rosalinda, con el corazón lleno de ansias y preocupación,
-                  finalmente llegó a la casa de su abuelita. El aire estaba
-                  impregnado de un silencio siniestro y una oscuridad densa,
-                  como si el mismo bosque hubiera dejado caer un velo lúgubre
-                  sobre el lugar.
-                </p>
-              </div>
+        </div>
+        {/* PAPER 5 */}
+        <div id="p5" {...flip(4)}>
+          <div className="front">
+            <div id="f5" className="front-content">
+              <p className="text">
+                El bosque exhudaba un silencio espeso y ominoso cuando el lobo,
+                envuelto en su piel de obrera, se acercó sigilosamente a la casa
+                de la abuela. El rincón oscuro del mundo parecía retener el
+                aliento, como si anticipara el horror que estaba por
+                desencadenarse.
+                <br />
+                <br />
+                El lobo, con su mirada perversa y hambrienta, llegó a la puerta
+                de la casa. Allí, detuvo su avance y golpeó tres veces con sus
+                garras, un golpeteo que sonó como el eco de un corazón
+                palpitante en medio de la negrura. Un escalofrío recorrió el
+                aire, como si el propio bosque supiera que la hora de la
+                tragedia se acercaba.
+                <br />
+                <br />
+                Tras el tercer golpe, el lobo esperó, y el tiempo pareció
+                detenerse. Entonces, imitando la voz temblorosa de la niña,
+                murmuró desde el otro lado de la puerta: Abuelita, soy yo,
+                Rosalinda. He vuelto.
+                <br />
+                <br />
+                Dentro de la casa, la abuela, ajena al peligro, se encontraba
+                frente a un espejo, ajustando su vestido con manos ancianas y
+                temblorosas. Escuchó la voz de la supuesta nieta y sonrió,
+                pensando en el reencuentro con su amada Rosalinda.
+                <br />
+                <br />
+                Pero mientras miraba su reflejo en el espejo, los ojos de la
+                abuela se encontraron con los del lobo, reflejados en el
+                cristal. No eran los ojos de su nieta, eran los ojos del
+                depredador disfrazado, con el brillo voraz de la bestia que
+                ansiaba su carne. El horror se apoderó de la abuela, pero fue
+                demasiado tarde.
+                <br />
+                <br />
+                El lobo, con una velocidad sobrenatural, atravesó la puerta con
+                un aullido infernal y se abalanzó sobre la abuela antes de que
+                ella pudiera gritar. Los colmillos del lobo se hundieron en la
+                carne de la anciana con una ferocidad grotesca, desgarrando su
+                piel y músculos en una danza macabra de sangre y sufrimiento.
+                <br />
+                <br />
+                Los aullidos de agonía se mezclaron con los gruñidos del lobo,
+                creando una sinfonía de pesadilla que resonó en el bosque
+                oscuro. La sangre salpicó las paredes y el suelo de la casa,
+                transformándola en un escenario de horror indescriptible. La
+                abuela, en su último suspiro, miró a los ojos amarillos del lobo
+                mientras la vida se apagaba de sus ojos, y el lobo continuó
+                devorándola con una voracidad insaciable, como un demonio
+                insensible a la humanidad.
+                <br />
+                <br />
+                Rosalinda, con el corazón lleno de ansias y preocupación,
+                finalmente llegó a la casa de su abuelita. El aire estaba
+                impregnado de un silencio siniestro y una oscuridad densa, como
+                si el mismo bosque hubiera dejado caer un velo lúgubre sobre el
+                lugar.
+              </p>
             </div>
-            <div className="back">
-              <div id="b5" className="back-content">
-                <Image
-                  className="drawing5"
-                  src={ImageP7}
-                  alt="drawing"
-                  width={100} // Ajusta el ancho según tus necesidades
-                  height={100} // Ajusta la altura según tus necesidades
-                />
-              </div>
+          </div>
+          <div className="back">
+            <div id="b5" className="back-content">
+              <Image
+                src={ImageP7}
+                alt="presentation"
+                width={350} // Ajusta el ancho según tus necesidades
+                height={500} // Ajusta la altura según tus necesidades
+              />
             </div>
-            {/* PAPER 6 */}
-            <div id="p6" {...flip(5)}>
-              <div className="front">
-                <div id="f6" className="front-content">
-                  <p className="text">
-                    Rosalinda abrió la puerta con cuidado y su mirada cayó de
-                    inmediato sobre un cuadro dantesco que la dejó sin aliento.
-                    Su abuela, o lo que quedaba de ella, estaba desparramada en
-                    el suelo en un macabro rompecabezas de carne y huesos. Un
-                    torrente de asco y tristeza la inundó, y Rosalinda vomitó en
-                    un rincón de la habitación, su desesperación y enojo
-                    creciendo incontrolablemente.
-                    <br />
-                    <br />
-                    Fue entonces cuando escuchó gruñidos procedentes de las
-                    sombras más profundas de la casa. El lobo, empapado en la
-                    sangre de la abuela, se acercó lentamente, con los ojos
-                    amarillos llenos de una maldad profunda. Rosalinda, mientras
-                    se secaba la boca con el dorso de la mano, clavó su mirada
-                    en el monstruo.
-                    <br />
-                    <br />
-                    ¿Por qué, Rosalinda? ¿Por qué has vuelto?, gruñó el lobo con
-                    una voz que parecía emanar de las mismas profundidades del
-                    infierno.
-                    <br />
-                    <br />
-                    Rosalinda, llena de ira y angustia, le espetó: ¿Por qué?
-                    ¡Porque has matado a mi abuelita, a mi única fuente de amor
-                    y consuelo en este mundo maldito!
-                    <br />
-                    <br />
-                    El lobo dejó escapar una risa que heló la sangre de
-                    Rosalinda. Tu abuelita no era lo que parecía, niña. Estaba
-                    tan sumida en la oscuridad como tu madre. Ambas eran
-                    cómplices en el juego de la maldición que nos atrapa.
-                    <br />
-                    <br />
-                    La niña, al borde de la locura, gritó: ¡No me importa! ¡Has
-                    destruido a mi familia y eso no quedará impune!
-                    <br />
-                    <br />
-                    El lobo, con un movimiento rápido como un rayo, se abalanzó
-                    sobre Rosalinda, y comenzó una lucha épica que sacudió la
-                    casa.El suelo se empapaba de sangre, creando charcos
-                    viscosos que reflejaban el rojo de la muerte. Los aullidos
-                    de la bestia y los gritos de la niña se mezclaban en un coro
-                    macabro que llenaba la casa como un himno a la locura.
-                    <br />
-                    <br />
-                    Finalmente, en un último acto de desesperación, Rosalinda
-                    logró inmovilizar al lobo, con sus piernas rodeando su
-                    cuerpo peludo y sus manos empuñando la daga ensangrentada.
-                    Con una fuerza sobrenatural, hundió la hoja en el corazón
-                    del lobo con un grito desgarrador.
-                    <br />
-                    <br />
-                    El lobo, con los ojos inyectados en sangre, dejó escapar un
-                    alarido de agonía que parecía rasgar el mismo tejido del
-                    universo. La sangre brotó a borbotones de la herida mortal,
-                    empapando a Rosalinda en un baño nauseabundo de vísceras y
-                    fluidos fétidos.
-                    <br />
-                    <br />
-                    El lobo se retorció y convulsionó, como si luchara por negar
-                    su propia muerte, pero la daga había hecho su trabajo y la
-                    bestia estaba condenada. Finalmente, con un estertor
-                    espeluznante, el lobo cayó al suelo, muerto. La escena que
-                    quedó era un cuadro grotesco de muerte y destrucción, con la
-                    niña cubierta de sangre y el cuerpo despedazado del lobo
-                    como un testimonio a la brutalidad del enfrentamiento. La
-                    casa se llenó de un silencio espeluznante, solo roto por la
-                    respiración agitada de Rosalinda.
-                    <br />
-                    <br />
-                    Rosalinda, con la cabeza del lobo ensangrentada en su cesta,
-                    salió de la casa transformada. La muerte de la abuela y la
-                    lucha contra el lobo habían dejado su mente en un estado de
-                    locura y rabia incontrolables. Ahora, llevando consigo la
-                    cabeza del monstruo, se adentró en el mundo exterior como
-                    una criatura de oscuridad, una vengadora llena de ira y sed
-                    de poder.
-                  </p>
-                </div>
-              </div>
-              <div className="back">
-                <div id="b6" className="back-content">
-                  <Image
-                    className="drawing6"
-                    src={ImageP6}
-                    alt="drawing"
-                    width={100} // Ajusta el ancho según tus necesidades
-                    height={100} // Ajusta la altura según tus necesidades
-                  />
-                </div>
-              </div>
+          </div>
+        </div>
+        {/* PAPER 6 */}
+        <div id="p6" {...flip(5)}>
+          <div className="front">
+            <div id="f6" className="front-content">
+              <p className="text">
+                Rosalinda abrió la puerta con cuidado y su mirada cayó de
+                inmediato sobre un cuadro dantesco que la dejó sin aliento. Su
+                abuela, o lo que quedaba de ella, estaba desparramada en el
+                suelo en un macabro rompecabezas de carne y huesos. Un torrente
+                de asco y tristeza la inundó, y Rosalinda vomitó en un rincón de
+                la habitación, su desesperación y enojo creciendo
+                incontrolablemente.
+                <br />
+                <br />
+                Fue entonces cuando escuchó gruñidos procedentes de las sombras
+                más profundas de la casa. El lobo, empapado en la sangre de la
+                abuela, se acercó lentamente, con los ojos amarillos llenos de
+                una maldad profunda. Rosalinda, mientras se secaba la boca con
+                el dorso de la mano, clavó su mirada en el monstruo.
+                <br />
+                <br />
+                ¿Por qué, Rosalinda? ¿Por qué has vuelto?, gruñó el lobo con
+                una voz que parecía emanar de las mismas profundidades del
+                infierno.
+                <br />
+                <br />
+                Rosalinda, llena de ira y angustia, le espetó: ¿Por qué?
+                ¡Porque has matado a mi abuelita, a mi única fuente de amor y
+                consuelo en este mundo maldito!
+                <br />
+                <br />
+                El lobo dejó escapar una risa que heló la sangre de Rosalinda.
+                Tu abuelita no era lo que parecía, niña. Estaba tan sumida en
+                la oscuridad como tu madre. Ambas eran cómplices en el juego de
+                la maldición que nos atrapa.
+                <br />
+                <br />
+                La niña, al borde de la locura, gritó: ¡No me importa! ¡Has
+                destruido a mi familia y eso no quedará impune!
+                <br />
+                <br />
+                El lobo, con un movimiento rápido como un rayo, se abalanzó
+                sobre Rosalinda, y comenzó una lucha épica que sacudió la
+                casa.El suelo se empapaba de sangre, creando charcos viscosos
+                que reflejaban el rojo de la muerte. Los aullidos de la bestia y
+                los gritos de la niña se mezclaban en un coro macabro que
+                llenaba la casa como un himno a la locura.
+                <br />
+                <br />
+                Finalmente, en un último acto de desesperación, Rosalinda logró
+                inmovilizar al lobo, con sus piernas rodeando su cuerpo peludo y
+                sus manos empuñando la daga ensangrentada. Con una fuerza
+                sobrenatural, hundió la hoja en el corazón del lobo con un grito
+                desgarrador.
+                <br />
+                <br />
+                El lobo, con los ojos inyectados en sangre, dejó escapar un
+                alarido de agonía que parecía rasgar el mismo tejido del
+                universo. La sangre brotó a borbotones de la herida mortal,
+                empapando a Rosalinda en un baño nauseabundo de vísceras y
+                fluidos fétidos.
+                <br />
+                <br />
+                El lobo se retorció y convulsionó, como si luchara por negar su
+                propia muerte, pero la daga había hecho su trabajo y la bestia
+                estaba condenada. Finalmente, con un estertor espeluznante, el
+                lobo cayó al suelo, muerto. La escena que quedó era un cuadro
+                grotesco de muerte y destrucción, con la niña cubierta de sangre
+                y el cuerpo despedazado del lobo como un testimonio a la
+                brutalidad del enfrentamiento. La casa se llenó de un silencio
+                espeluznante, solo roto por la respiración agitada de Rosalinda.
+                <br />
+                <br />
+                Rosalinda, con la cabeza del lobo ensangrentada en su cesta,
+                salió de la casa transformada. La muerte de la abuela y la lucha
+                contra el lobo habían dejado su mente en un estado de locura y
+                rabia incontrolables. Ahora, llevando consigo la cabeza del
+                monstruo, se adentró en el mundo exterior como una criatura de
+                oscuridad, una vengadora llena de ira y sed de poder.
+              </p>
+            </div>
+          </div>
+          <div className="back">
+            <div id="b6" className="back-content">
+              <Image
+                src={ImageP6}
+                alt="presentation"
+                width={350} // Ajusta el ancho según tus necesidades
+                height={500} // Ajusta la altura según tus necesidades
+              />
             </div>
           </div>
         </div>
