@@ -40,7 +40,6 @@ export default function Book() {
   }
 
   function handleNextClick() {
-    console.log(page);
     if (page === 0) openBook();
     if (page < 4)
       setPage((prevState) => {
