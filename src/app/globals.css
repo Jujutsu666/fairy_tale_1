@@ -154,11 +154,11 @@ button:hover {
 .text {
   max-width: 90%; /* Set a maximum width for the text */
   max-height: 90%;
-  font-size: 8.5px; /* Adjust the font size as needed */
+  font-size: 8px; /* Adjust the font size as needed */
   margin: 0 auto; /* Center the text horizontally if needed */
   text-align: justify;
-  font-family: 'Morris Roman', sans-serif;
-  font-family: 'Morris Roman Alternate', sans-serif;
+  font-family: "Morris Roman", sans-serif;
+  font-family: "Morris Roman Alternate", sans-serif;
 }
 
 /* page stack order */
