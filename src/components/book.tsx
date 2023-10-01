@@ -7,7 +7,7 @@ import ImageP2 from "/public/assets/images/p22.png";
 import ImageP3 from "/public/assets/images/p3.png";
 import ImageP4 from "/public/assets/images/p4.png";
 import ImageP7 from "/public/assets/images/p7.png";
-import ImageP6 from "/public/assets/images/p6.png";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowCircleLeft,
@@ -438,20 +438,19 @@ export default function Book() {
                 el dorso de la mano, clavó su mirada en el monstruo.
                 <br />
                 <br />
-                ¿Por qué, Rosalinda? ¿Por qué has vuelto?, gruñó el lobo con
-                una voz que parecía emanar de las mismas profundidades del
-                infierno.
+                ¿Por qué, Rosalinda? ¿Por qué has vuelto?, gruñó el lobo con una
+                voz que parecía emanar de las mismas profundidades del infierno.
                 <br />
                 <br />
-                Rosalinda, llena de ira y angustia, le espetó: ¿Por qué?
-                ¡Porque has matado a mi abuelita, a mi única fuente de amor y
-                consuelo en este mundo maldito!
+                Rosalinda, llena de ira y angustia, le espetó: ¿Por qué? ¡Porque
+                has matado a mi abuelita, a mi única fuente de amor y consuelo
+                en este mundo maldito!
                 <br />
                 <br />
                 El lobo dejó escapar una risa que heló la sangre de Rosalinda.
-                Tu abuelita no era lo que parecía, niña. Estaba tan sumida en
-                la oscuridad como tu madre. Ambas eran cómplices en el juego de
-                la maldición que nos atrapa.
+                Tu abuelita no era lo que parecía, niña. Estaba tan sumida en la
+                oscuridad como tu madre. Ambas eran cómplices en el juego de la
+                maldición que nos atrapa.
                 <br />
                 <br />
                 La niña, al borde de la locura, gritó: ¡No me importa! ¡Has
@@ -501,12 +500,18 @@ export default function Book() {
           </div>
           <div className="back">
             <div id="b6" className="back-content">
-              <Image
-                src={ImageP6}
-                alt="presentation"
-                width={350} // Ajusta el ancho según tus necesidades
-                height={500} // Ajusta la altura según tus necesidades
-              />
+              <p className="text">
+                MORALIDAD (cuento original)<br /><br />En este pasaje se observa que los jóvenes,
+                especialmente las jóvenes hermosas, bien parecidas y amables,
+                cometen un grave error al escuchar a todo tipo de personas. No
+                sorprende que algunos de ellos sean devorados por el Lobo. Digo
+                el Lobo, porque no todos los lobos son iguales. Algunos tienen
+                un temperamento amable, son tranquilos, sin maldad ni enojo, y
+                son complacientes y dóciles. Siguen a las jóvenes damiselas
+                hasta sus casas y calles. Pero desafortunadamente, es bien
+                sabido que estos lobos apacibles son los más peligrosos de todos
+                los lobos.
+              </p>
             </div>
           </div>
         </div>
