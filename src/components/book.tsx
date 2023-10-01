@@ -1,118 +1,199 @@
+'use client';
+import { useState } from 'react';
+import Image from 'next/image';
+import PresentationImage from '/public/assets/images/presentation.png';
+import ImageP1 from '/public/assets/images/p1.png';
+import ImageP2 from '/public/assets/images/p22.png';
+import ImageP3 from '/public/assets/images/p3.png';
+import ImageP4 from '/public/assets/images/p4.png';
+import ImageP7 from '/public/assets/images/p7.png';
+import ImageP6 from '/public/assets/images/p6.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
 
+export default function Book() {
+  const [page, setPage] = useState(0);
+  const [bookStyle, setBookStyle] = useState({ transform: 'translateX(0%)' });
+  const [prevBtnStyle, setPrevBtnStyle] = useState({ transform: 'translateX(0px)' });
+  const [nextBtnStyle, setNextBtnStyle] = useState({ transform: 'translateX(0px)' });
 
-interface BookProps {
-  numOfPapers: number;
-}
+  function openBook() {
+    setBookStyle({ transform: 'translateX(50%)' });
+    setPrevBtnStyle({ transform: 'translateX(-180px)' });
+    setNextBtnStyle({ transform: 'translateX(180px)' });
+  }
 
-
-  const prevBtn = document.querySelector("#prev-btn");
-  const nextBtn = document.querySelector("#next-btn");
-  const book = document.querySelector("#book");
-
-  const paper1 = document.querySelector("#p1");
-  const paper2 = document.querySelector("#p2");
-  const paper3 = document.querySelector("#p3");
-
-  const paper4 = document.querySelector("#p4");
-  const paper5 = document.querySelector("#p5");
-  const paper6 = document.querySelector("#p6");
-
-  let currentLocation: number = 1;
-  let maxLocation: number = numOfPapers + 1;
-
-  const openBook = () => {
-    book.style.transform = "translateX(50%)";
-    prevBtn.style.transform = "translateX(-180px)";
-    nextBtn.style.transform = "translateX(180px)";
-  };
-
-  const closeBook = (isAtBeginning: boolean) => {
+  function closeBook(isAtBeginning: boolean) {
     if (isAtBeginning) {
-      book.style.transform = "translateX(0%)";
+      setBookStyle({ transform: 'translateX(0%)' });
     } else {
-      book.style.transform = "translateX(100%)";
+      setBookStyle({ transform: 'translateX(100%)' });
+    }
+    setPrevBtnStyle({ transform: 'translateX(0px)' });
+    setNextBtnStyle({ transform: 'translateX(0px)' });
+  }
+
+  function handlePrevClick() {
+    if (page === 4) openBook();
+    if (page > 0) setPage((prevState) => prevState - 1);
+    if (page === 1) closeBook(true);
+  }
+
+  function handleNextClick() {
+    console.log(page);
+    if (page === 0) openBook();
+    if (page < 4)
+      setPage((prevState) => {
+        if (page === 3) closeBook(false);
+        return prevState + 1;
+      });
+  }
+
+  function flip(_page: number) {
+    let className = 'paper';
+    let style = {};
+
+    if (_page < page) {
+      style = { zIndex: 1 };
+      className = `${className} flipped`;
     }
 
-    prevBtn.style.transform = "translateX(0px)";
-    nextBtn.style.transform = "translateX(0px)";
-  };
+    return { style, className };
+  }
 
-  const goNextPage = () => {
-    if (currentLocation < maxLocation) {
-      switch (currentLocation) {
-        case 1:
-          openBook();
-          paper1.classList.add("flipped");
-          paper1.style.zIndex = "1";
-          break;
-        case 2:
-          paper2.classList.add("flipped");
-          paper2.style.zIndex = "2";
-          break;
-        case 3:
-          paper3.classList.add("flipped");
-          paper3.style.zIndex = "3";
-          break;
-        case 4:
-          paper4.classList.add("flipped");
-          paper4.style.zIndex = "4";
-          break;
-        case 5:
-          paper5.classList.add("flipped");
-          paper5.style.zIndex = "5";
-          break;
-        case 6:
-          paper6.classList.add("flipped");
-          paper6.style.zIndex = "6";
-          closeBook(false);
-          break;
-        default:
-          throw new Error("Unknown state");
-      }
-      currentLocation++;
-    }
-  };
+  return (
+    <div className="book__container">
+      <button id="prev-btn" onClick={handlePrevClick} type="button" style={prevBtnStyle}>
+        <FontAwesomeIcon icon={faArrowCircleLeft} className="fas" />
+      </button>
 
-  const goPrevPage = () => {
-    if (currentLocation > 1) {
-      switch (currentLocation) {
-        case 2:
-          closeBook(true);
-          paper1.classList.remove("flipped");
-          paper1.style.zIndex = "6";
-          break;
-        case 3:
-          paper2.classList.remove("flipped");
-          paper2.style.zIndex = "5";
-          break;
-        case 4:
-          paper3.classList.remove("flipped");
-          paper3.style.zIndex = "4";
-          break;
-        case 5:
-          paper4.classList.remove("flipped");
-          paper4.style.zIndex = "3";
-          break;
-        case 6:
-          paper5.classList.remove("flipped");
-          paper5.style.zIndex = "2";
-          break;
-        case 7:
-          openBook();
-          paper6.classList.remove("flipped");
-          paper6.style.zIndex = "1";
-          break;
-        default:
-          throw new Error("Unknown state");
-      }
-      currentLocation--;
-    }
-  };
+      <div id="book" className="book" style={bookStyle}>
+        {/* PAPER 1 */}
+        <div id="p1" {...flip(0)}>
+          <div className="front">
+            <div id="f1" className="front-content">
+              <Image
+                src={PresentationImage}
+                alt="presentation"
+                width={350} // Ajusta el ancho según tus necesidades
+                height={500} // Ajusta la altura según tus necesidades
+              />
+            </div>
+          </div>
+          <div className="back">
+            <div id="b1" className="back-content">
+              <Image
+                className="drawing1"
+                src={ImageP1}
+                alt="drawing"
+                width={350} // Ajusta el ancho según tus necesidades
+                height={500} // Ajusta la altura según tus necesidades
+              />
+            </div>
+          </div>
+        </div>
 
-  prevBtn.addEventListener("click", goPrevPage);
-  nextBtn.addEventListener("click", goNextPage);
+        {/* PAPER 2 */}
+        <div id="p2" {...flip(1)}>
+          <div className="front">
+            <div id="f2" className="front-content">
+              {/* Contenido de Paper 2 (Front) */}
+            </div>
+          </div>
+          <div className="back">
+            <div id="b2" className="back-content">
+              <Image
+                className="drawing2"
+                src={ImageP2}
+                alt="drawing"
+                width={350} // Ajusta el ancho según tus necesidades
+                height={500} // Ajusta la altura según tus necesidades
+              />
+            </div>
+          </div>
+        </div>
 
-  return null;
-};
+        {/* PAPER 3 */}
+        <div id="p3" {...flip(2)}>
+          <div className="front">
+            <div id="f3" className="front-content">
+              {/* Contenido de Paper 2 (Front) */}
+            </div>
+          </div>
+          <div className="back">
+            <div id="b3" className="back-content">
+              <Image
+                className="drawing3"
+                src={ImageP3}
+                alt="drawing"
+                width={350} // Ajusta el ancho según tus necesidades
+                height={500} // Ajusta la altura según tus necesidades
+              />
+            </div>
+          </div>
+        </div>
+        {/* PAPER 4 */}
+        <div id="p4" {...flip(3)}>
+          <div className="front">
+            <div id="f4" className="front-content">
+              {/* Contenido de Paper 2 (Front) */}
+            </div>
+          </div>
+          <div className="back">
+            <div id="b4" className="back-content">
+              <Image
+                className="drawing4"
+                src={ImageP4}
+                alt="drawing"
+                width={350} // Ajusta el ancho según tus necesidades
+                height={500} // Ajusta la altura según tus necesidades
+              />
+            </div>
+          </div>
+          {/* PAPER 5 */}
+          <div id="p5" {...flip(4)}>
+            <div className="front">
+              <div id="f5" className="front-content">
+                {/* Contenido de Paper 2 (Front) */}
+              </div>
+            </div>
+            <div className="back">
+              <div id="b5" className="back-content">
+                <Image
+                  className="drawing5"
+                  src={ImageP7}
+                  alt="drawing"
+                  width={100} // Ajusta el ancho según tus necesidades
+                  height={100} // Ajusta la altura según tus necesidades
+                />
+              </div>
+            </div>
+            {/* PAPER 6 */}
+            <div id="p6" {...flip(5)}>
+              <div className="front">
+                <div id="f6" className="front-content">
+                  {/* Contenido de Paper 2 (Front) */}
+                </div>
+              </div>
+              <div className="back">
+                <div id="b6" className="back-content">
+                  <Image
+                    className="drawing6"
+                    src={ImageP6}
+                    alt="drawing"
+                    width={100} // Ajusta el ancho según tus necesidades
+                    height={100} // Ajusta la altura según tus necesidades
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-export default Book;
+      <button id="next-btn" type="button" onClick={handleNextClick}>
+        <FontAwesomeIcon icon={faArrowCircleRight} className="fas" style={nextBtnStyle} />
+      </button>
+    </div>
+  );
+}
